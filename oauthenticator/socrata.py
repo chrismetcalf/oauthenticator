@@ -20,7 +20,7 @@ from traitlets import Unicode
 
 from .oauth2 import OAuthLoginHandler, OAuthenticator
 
-# Support github.com and github enterprise installations
+# TODO: Allow overriding of SOCRATA_HOST by JupyterHub path or something, ala Foundry.
 SOCRATA_HOST = os.environ.get('SOCRATA_HOST') or 'opendata.socrata.com'
 
 class SocrataMixin(OAuth2Mixin):
@@ -52,7 +52,7 @@ class SocrataOAuthenticator(OAuthenticator):
             client_id=self.client_id,
             client_secret=self.client_secret,
             grant_type='authorization_code',
-            redirect_uri=self.oauth_callback_url,
+            redirect_uri=self.oauth_callback_url.replace("http://", "https://"),
             code=code
         )
 
