@@ -52,7 +52,7 @@ class SocrataOAuthenticator(OAuthenticator):
             client_id=self.client_id,
             client_secret=self.client_secret,
             grant_type='authorization_code',
-            redirect_uri=self.oauth_callback_url.replace("http://", "https://"),
+            redirect_uri=self.oauth_callback_url,
             code=code
         )
 
